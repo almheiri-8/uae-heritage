@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>UAE Heritage Spotlight</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .card {
+      background: white;
+      max-width: 650px;
+      width: 90%;
+      padding: 24px;
+      border-radius: 18px;
+      box-shadow: 0 14px 28px rgba(0,0,0,0.08);
+    }
+    h1 { text-align: center; margin: 0 0 8px; }
+    .subtitle { text-align: center; color: #666; margin-bottom: 18px; }
+    select, button {
+      width: 100%; padding: 10px; border-radius: 10px; margin-top: 10px;
+      border: 1px solid #ccc; font-size: 1rem;
+    }
+    button {
+      background: linear-gradient(135deg, #00732f, #009e49);
+      color: white; font-weight: 600; border: none; cursor: pointer;
+    }
+    .symbol-display {
+      margin-top: 16px; padding: 12px; background: #fafafa; border-radius: 14px;
+      border: 1px solid #eee;
+    }
+    .symbol-name { font-weight: 700; }
+    .symbol-emoji { font-size: 1.6rem; margin-top: 4px; }
+    .definition-block { margin-top: 16px; display: none; }
+    .footer-note { text-align: center; margin-top: 10px; color: #999; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>UAE Heritage Spotlight</h1>
+    <div class="subtitle">Heritage • National Identity • National Day</div>
+
+    <label>Choose a heritage symbol:</label>
+    <select id="symbolSelect">
+      <option value="falcon">Falcon</option>
+      <option value="dhow">Dhow</option>
+      <option value="ghaf">Ghaf Tree</option>
+      <option value="ayyala">Al-Ayyala</option>
+      <option value="pearls">Pearl Diving</option>
+    </select>
+
+    <div class="symbol-display">
+      <div class="symbol-name" id="symbolName">Falcon</div>
+      <div class="symbol-emoji" id="symbolEmoji">🦅</div>
+      <div><strong>Ask students:</strong> “Send an emoji that shows how this symbol makes you feel.”</div>
+    </div>
+
+    <button id="revealBtn">Reveal Meaning</button>
+
+    <div class="definition-block" id="definitionBlock">
+      <h3>Meaning:</h3>
+      <div id="definitionText"></div>
+      <h3>National Day Connection:</h3>
+      <div id="nationalDayText"></div>
+    </div>
+
+    <div class="footer-note">Made for classroom use — no logins required.</div>
+  </div>
+
+<script>
+const symbols = {
+  falcon: {
+    name: "Falcon",
+    emoji: "🦅",
+    definition: "The falcon symbolizes strength, courage, and pride in Emirati culture.",
+    nationalDay: "It represents leadership and determination — core values behind the UAE's unity."
+  },
+  dhow: {
+    name: "Dhow",
+    emoji: "⛵",
+    definition: "The dhow represents maritime heritage, pearl diving, and early trade.",
+    nationalDay: "It reminds us of the hard work and sacrifice of earlier generations."
+  },
+  ghaf: {
+    name: "Ghaf Tree",
+    emoji: "🌳",
+    definition: "The Ghaf tree symbolizes peace, stability, and endurance.",
+    nationalDay: "It reflects the UAE’s deep connection to its land and heritage."
+  },
+  ayyala: {
+    name: "Al-Ayyala",
+    emoji: "🥁",
+    definition: "A traditional performance showing unity and community spirit.",
+    nationalDay: "It celebrates standing together as one nation."
+  },
+  pearls: {
+    name: "Pearl Diving",
+    emoji: "💎",
+    definition: "Pearl diving required bravery, teamwork, and resilience.",
+    nationalDay: "It reminds us that today’s success was built on past perseverance."
+  }
+};
+
+const sel = document.getElementById("symbolSelect");
+const nameEl = document.getElementById("symbolName");
+const emojiEl = document.getElementById("symbolEmoji");
+const block = document.getElementById("definitionBlock");
+const defText = document.getElementById("definitionText");
+const ndText = document.getElementById("nationalDayText");
+
+sel.addEventListener("change", () => {
+  const k = sel.value;
+  nameEl.textContent = symbols[k].name;
+  emojiEl.textContent = symbols[k].emoji;
+  block.style.display = "none";
+});
+
+document.getElementById("revealBtn").addEventListener("click", () => {
+  const k = sel.value;
+  defText.textContent = symbols[k].definition;
+  ndText.textContent = symbols[k].nationalDay;
+  block.style.display = "block";
+});
+</script>
+
+</body>
+</html>
